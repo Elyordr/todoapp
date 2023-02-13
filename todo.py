@@ -1,6 +1,5 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-import datetime
 
 
 app = Flask(__name__)
@@ -37,7 +36,8 @@ class TodoResource(Resource):
             return {
                 "id": todo_id,
                 "data": todos[todo_id]['data'],
-                "completed": todos[todo_id]['completed']
+                "completed": todos[todo_id]['completed'],
+                "status": "Your new ToDo successfully created"
             }
 
 api.add_resource(TodoResource, '/todo/<string:todo_id>')
