@@ -18,6 +18,8 @@ jobs:
         sudo apt-get install curl
         sudo curl -L https://dl.pstmn.io/download/latest/linux64 -o /usr/local/bin/newman
         sudo chmod +x /usr/local/bin/newman
+        newman -v
+        cd /usr/local/bin
         ls
 
     - name: Run Postman Collection
