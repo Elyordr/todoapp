@@ -18,9 +18,6 @@ jobs:
         sudo apt-get install curl
         sudo curl -L https://dl.pstmn.io/download/latest/linux64 -o /usr/local/bin/newman
         sudo chmod +x /usr/local/bin/newman
-  
-    - name: Set permissions for Newman binary
-      run: chmod +x /usr/local/bin/newman
 
     - name: Run Postman Collection
       run: newman run pm_collection.json
