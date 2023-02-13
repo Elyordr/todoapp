@@ -16,11 +16,12 @@ jobs:
     - name: Install Newman
       run: |
         sudo apt-get install curl
-        sudo curl -L https://dl.pstmn.io/download/latest/linux64 -o /usr/local/bin/newman
+        sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+        nodejs -v
+        npm -v
+        sudo npx install -g newman
         sudo chmod +x /usr/local/bin/newman
-        newman -v
-        cd /usr/local/bin
-        ls
 
     - name: Run Postman Collection
       run: newman run pm_collection.json
