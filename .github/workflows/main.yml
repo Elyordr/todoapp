@@ -1,0 +1,23 @@
+name: Run Postman Collection
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run_postman_collection:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Newman
+      run: |
+        sudo apt-get install curl
+        sudo curl -L https://dl.pstmn.io/download/latest/linux64 -o /usr/local/bin/newman
+        sudo chmod +x /usr/local/bin/newman
+
+    - name: Run Postman Collection
+      run: newman run pm_collection.json
