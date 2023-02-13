@@ -15,10 +15,11 @@ class TodoResource(Resource):
             return {
                 "id": todo_id,
                 "data": todos[todo_id]['data'],
-                "completed": todos[todo_id]['completed']
+                "completed": todos[todo_id]['completed'],
+                "error": "null"
             }
         else:
-            return {"error": "Todo not found"}, 404
+            return {"error": "Todo not found"}, 200
 
     def put(self, todo_id):
             completed = request.form.get('completed', "False")
