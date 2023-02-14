@@ -27,11 +27,9 @@ jobs:
 
     - name: Install dependencies
       run: |
-        virtualenv myenv
-        source myenv/bin/activate
-        pip install flask
-        pip install flask-restful
-        pip install jinja2
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install flask flask-restful
 
     - name: Run Flask app
       run: |
