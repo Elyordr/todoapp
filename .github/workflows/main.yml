@@ -37,6 +37,7 @@ jobs:
       run: |
         export FLASK_APP=app.py
         flask run &
+        echo $PYTHONPATH
 
     - name: Install Newman
       run: |
