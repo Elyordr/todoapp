@@ -35,6 +35,7 @@ jobs:
         pip3 install Flask==1.1.2
         pip3 install flask-restful
         echo $PYTHONPATH
+        pip freeze
         /usr/bin/python3 /home/runner/work/todoapp/todoapp/todo.py
     - name: Install Newman
       run: |
