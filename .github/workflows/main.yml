@@ -30,6 +30,9 @@ jobs:
           python3 -m venv venv
           source venv/bin/activate
           pip install flask flask-restful
+          
+    - name: Add environment to PATH
+      run: echo "export PATH=$PATH:$(pwd)/venv/bin" >> $GITHUB_ENV
 
     - name: Run Flask app
       run: |
