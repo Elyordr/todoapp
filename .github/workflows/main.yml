@@ -27,7 +27,7 @@ jobs:
         readlink -f todo.py
         pwd
         cd ..
-        locate python
+        whereis python
         cd ..
         ls
 
