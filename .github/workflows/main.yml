@@ -31,9 +31,8 @@ jobs:
     - name: Run ToDo project
       run: |
         sudo apt-get update
-        sudo apt-get install -y python3-pip
-        pip3 install Flask==1.1.2
-        pip3 install flask-restful
+        pip install Flask
+        pip install flask-restful
         echo $PYTHONPATH
         pip freeze
         /usr/bin/python3 /home/runner/work/todoapp/todoapp/todo.py
