@@ -35,7 +35,7 @@ jobs:
         pip install flask-restful
         echo $PYTHONPATH
         pip freeze
-        /usr/bin/python3 /home/runner/work/todoapp/todoapp/todo.py
+        /usr/bin/python /home/runner/work/todoapp/todoapp/todo.py
     - name: Install Newman
       run: |
         npm install -g newman
