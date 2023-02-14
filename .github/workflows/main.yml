@@ -19,6 +19,9 @@ jobs:
         sudo apt-get install -y python3-pip
         pip3 install -r requirements.txt
         ls
+        readlink -f todo.py
+        cd ..
+        pwd
 
     - name: Install Node.js and npm
       run: |
