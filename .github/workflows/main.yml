@@ -25,7 +25,7 @@ jobs:
         pip3 install -r requirements.txt
         ls
         pwd
-        cd /usr/bin/python
+        cd /usr/bin
         ls
 
 #     - name: Install Node.js and npm
