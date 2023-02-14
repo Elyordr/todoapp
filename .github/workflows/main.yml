@@ -7,7 +7,7 @@ on:
         - master
 
 env:
-  PYTHONPATH: /usr/local/lib/python3.11/site-packages
+  PYTHONPATH: /usr/local/lib/python3.8/site-packages
 
 jobs:
   build:
@@ -20,16 +20,15 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.11
+        python-version: 3.8
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -y python3-pip
-        pip3 install Flask==1.1.2
-        pip3 install flask-restful
-        pip3 install jinja2
-        echo $PYTHONPATH
+        virtualenv myenv
+        source myenv/bin/activate
+        pip install flask
+        pip install flask-restful
+        pip install jinja2
 
     - name: Run Flask app
       run: |
@@ -39,6 +38,7 @@ jobs:
         
     - name: Run ToDo project
       run: |
+        source myenv/bin/activate
         /usr/bin/python3 /home/runner/work/todoapp/todoapp/todo.py
 
     - name: Install Newman
