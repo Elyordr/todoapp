@@ -35,7 +35,7 @@ jobs:
 
     - name: Run ToDo project
       run: |
-        /usr/bin/python /home/runner/work/todoapp/todoapp/todo.py
+        /usr/bin/python3 /home/runner/work/todoapp/todoapp/todo.py
 
     - name: Install Newman
       run: |
