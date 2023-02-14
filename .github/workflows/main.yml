@@ -31,7 +31,7 @@ jobs:
     - name: Run ToDo project
       run: |
         sudo apt-get update
-        pip install Flask
+        pip install flask
         pip install flask-restful
         echo $PYTHONPATH
         pip freeze
