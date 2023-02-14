@@ -1,13 +1,9 @@
-        
-name: Flask App and Postman Collection
+name: Run Postman Collection
 
 on:
-    push:
-      branches:
-        - master
-        
-env:
-  PYTHONPATH: /usr/local/lib/python3.8/site-packages
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -16,42 +12,31 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-        
-    - name: Install virtualenv
-      run: sudo apt-get install python3-virtualenv
-
+      
     - name: Install dependencies
       run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install flask flask-restful
-          
-    - name: Add environment to PATH
-      run: echo ::set-env name=PATH::$GITHUB_PATH
-           echo ::set-env name=VIRTUAL_ENV::$(pwd)/venv
-           echo ::set-env name=PYTHONPATH::$(pwd)/venv/lib/python3.8/site-packages
-
-    - name: Run Flask app
-      run: |
-        export FLASK_APP=app.py
-        flask run &
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+        pip3 install Flask==1.1.2
+        pip3 install flask-restful
         echo $PYTHONPATH
         
+#     - name: Install Node.js and npm
+#       run: |
+#         sudo apt-get update
+#         sudo apt-get install -y nodejs npm
+
     - name: Run ToDo project
       run: |
-        source myenv/bin/activate
         /usr/bin/python3 /home/runner/work/todoapp/todoapp/todo.py
-
     - name: Install Newman
       run: |
         npm install -g newman
-
-    - name: Run Postman Collection
+    - name: Run Postman Collection with Newman
       run: |
-        newman run collection.json
-
+        newman run pm_collection.json
