@@ -20,6 +20,6 @@ jobs:
       run: docker run my-app-image
 
     - name: Run Postman tests
-      uses: postmanlabs/newman-action@v2.1.0
+      uses: matt-ball/newman-action@master
       with:
         collection: pm_collection.json
