@@ -1,4 +1,4 @@
-name: Run Postman Collection
+name: Python Flask CI
 
 on:
   push:
@@ -12,33 +12,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
-    - name: Set up Python
-      uses: actions/setup-python@v2
+
+    - name: Build Docker image
+      run: docker build -t my-app-image .
+
+    - name: Run Docker container
+      run: docker run my-app-image
+
+    - name: Run Postman tests
+      uses: postmanlabs/newman-action@v2.1.0
       with:
-        python-version: 3.8
-      
-    - name: Install dependencies
-      run: |
-      
-
-        
-#     - name: Install Node.js and npm
-#       run: |
-#         sudo apt-get update
-#         sudo apt-get install -y nodejs npm
-
-    - name: Run ToDo project
-      run: |
-        sudo apt-get update
-        pip install flask
-        pip install flask-restful
-        echo $PYTHONPATH
-        pip freeze
-        /usr/bin/python /home/runner/work/todoapp/todoapp/todo.py
-    - name: Install Newman
-      run: |
-        npm install -g newman
-    - name: Run Postman Collection with Newman
-      run: |
-        newman run pm_collection.json
+        collection: pm_collection.json
