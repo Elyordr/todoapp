@@ -18,7 +18,7 @@ class TodoResource(Resource):
                 "error": "null"
             }
         else:
-            return {"error": "ToDo not found"}, 200
+            return {"error": "Todo not found"}, 200
 
     def put(self, todo_id):
             completed = request.form.get('completed', "False")
