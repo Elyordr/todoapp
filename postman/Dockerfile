@@ -1,4 +1,4 @@
-FROM postman/newman:alpine
+FROM dannydainton/htmlextra:latest
 
 # Set the working directory to /app
 WORKDIR /app
