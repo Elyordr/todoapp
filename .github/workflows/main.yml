@@ -11,5 +11,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Build Docker image
         run: |
-          ls
+          cd python_project
           docker build -t my-python-app .
