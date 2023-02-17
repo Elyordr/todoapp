@@ -13,9 +13,13 @@ jobs:
         run: |
           cd python_project
           docker build -t my-python-app .
-          docker run -d -p 8080:8080 --name my-python-app my-python-app
           cd ..
           cd postman
+          docker build -t postman:v1 .
+        
+      - name: Python Project nad Postman Collection run
+        run: |
+          docker run -d -p 8080:8080 --name my-python-app my-python-app
           docker run --link my-python-app:myapp -v $(pwd)/newman:/etc/newman/ postman:v1 run pm_collection.json --env-var "url=http://myapp:8080"
 
       - name: Clean up Docker containers
