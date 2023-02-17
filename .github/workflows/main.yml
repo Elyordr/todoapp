@@ -20,7 +20,7 @@ jobs:
       - name: Python Project nad Postman Collection run
         run: |
           docker run -d -p 8080:8080 --name my-python-app my-python-app
-          docker run --link my-python-app:myapp -v $(pwd):/etc/newman postman:v1 run pm_collection.json -r htmlextra --env-var "url=http://myapp:8080"
+          docker run --link my-python-app:myapp -v $(pwd):/etc/newman postman:v1 run pm_collection.json -r htmlextra --env-var "url=http://myapp:8080" --reporter-htmlextra-export newman-report.html
 
       - name: Clean up Docker containers
         run: |
