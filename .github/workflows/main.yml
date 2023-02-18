@@ -16,9 +16,6 @@ jobs:
           cd ..
           cd postman
           docker build -t postman:v1 .
-          cd ..
-          cd reports
-          docker build -t report:v1 .
         
       - name: Python Project nad Postman Collection run
         run: |
