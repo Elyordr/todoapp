@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           document: /home/runner/work/todoapp/todoapp/postman/newman/report.html
           message: |
-            Here is the Newman report for the latest test run
+            Произошел деплой на продакшн сервер, ловите результаты:
         if: always()
         
       - name: Export Newman report
