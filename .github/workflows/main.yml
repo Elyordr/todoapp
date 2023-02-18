@@ -1,25 +1,51 @@
-name: Python Flask CI
-
+name: Build Docker image
 on:
   push:
     branches:
       - master
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build Docker image
+        run: |
+          cd python_project
+          docker build -t my-python-app .
+          cd ..
+          cd postman
+          docker build -t postman:v1 .
+          cd ..
+          cd reports
+          docker build -t report:v1 .
+        
+      - name: Python Project nad Postman Collection run
+        run: |
+          docker run -d -p 8080:8080 --name my-python-app my-python-app
+          docker run --link my-python-app:myapp -v $(pwd):/etc/newman postman:v1 run pm_collection.json -r htmlextra --env-var "url=http://myapp:8080" --reporter-htmlextra-export newman-report.html
+          cd postman/newman
+          ls
+          pwd
+          
+      - name: Send Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            Here is the Newman report for the latest test run
+        if: always()
+        
+      - name: Export Newman report
+        run: |
+          cd
+          docker cp $(docker ps -q -f name=my-python-app):/etc/newman-report ./todoapp.html
+          ls
+          docker run report:v1
 
-    - name: Build Docker image
-      run: docker build -t my-app-image .
-
-    - name: Run Docker container
-      run: docker run my-app-image
-
-    - name: Run Postman tests
-      uses: matt-ball/newman-action@master
-      with:
-        collection: pm_collection.json
+          
+      - name: Clean up Docker containers
+        run: |
+          docker stop my-python-app
+          docker rm my-python-app
