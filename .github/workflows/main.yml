@@ -13,9 +13,10 @@ jobs:
         run: |
           cd python_project
           docker build -t my-python-app .
-          cd ..
-          cd postman
+          cd ../postman
           docker build -t postman:v1 .
+          cd ../reports
+          docker build -t reports:v1 .
         
       - name: Python Project nad Postman Collection run
         run: |
@@ -38,11 +39,8 @@ jobs:
         
       - name: Export Newman report
         run: |
-          cd
-          docker cp $(docker ps -q -f name=my-python-app):/etc/newman-report ./todoapp.html
+          docker run -v /home/runner/work/todoapp/todoapp/postman/newman:/reports reports:v1
           ls
-          docker run report:v1
-
           
       - name: Clean up Docker containers
         run: |
