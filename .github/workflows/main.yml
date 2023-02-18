@@ -25,7 +25,7 @@ jobs:
           ls
           
       - name: Send Telegram message
-        uses: appleboy/telegram-action@v0.2.1
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
