@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1162ae65-1a71-4bb3-8781-1fa597dc7d3c",
-		"name": "Python ToDo app",
+		"name": "todoapp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25390918"
 	},
