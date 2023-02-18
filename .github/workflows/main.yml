@@ -21,7 +21,7 @@ jobs:
         run: |
           docker run -d -p 8080:8080 --name my-python-app my-python-app
           cd postman
-          docker run --link my-python-app:myapp -v $(pwd):/etc/newman dannydainton/htmlextra run pm_collection.json -r htmlextra --env-var "url=http://myapp:8080"          
+          docker run --link my-python-app:myapp -v $(pwd):/etc/newman dannydainton/htmlextra run pm_collection.json -r htmlextra --env-var "url=http://myapp:8080" --reporter-htmlextra-export newman/report.html        
           cd newman
           ls
           pwd
