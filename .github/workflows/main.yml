@@ -39,7 +39,7 @@ jobs:
         
       - name: Export Newman report
         run: |
-          docker cp $(docker ps -q -f name=my-python-app):/etc/newman-report
+          docker cd $(docker ps -q -f name=my-python-app):/etc/newman-report
           ls
           docker run report:v1
 
