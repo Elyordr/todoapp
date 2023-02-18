@@ -17,4 +17,4 @@ EXPOSE 8080
 ENV NAME World
 
 # Run Postman collections using Newman
-CMD ["python", "todo.py"]
+CMD ["python", "todo.py", "telegram-send --configure"]
