@@ -39,7 +39,9 @@ jobs:
         
       - name: Export Newman report
         run: |
-          docker run -v /home/runner/work/todoapp/todoapp/postman/newman:/reports reports:v1
+          ls
+          docker cp /home/runner/work/todoapp/todoapp/postman/newman/report.html reports:/reports
+          docker run reports:v1
           ls
           
       - name: Clean up Docker containers
