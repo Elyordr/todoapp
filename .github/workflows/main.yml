@@ -24,6 +24,16 @@ jobs:
           cd postman/newman
           ls
           
+      - name: Send Telegram message
+        uses: appleboy/telegram-action@v0.2.1
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            Here is the Newman report for the latest test run
+        if: always()
+
+          
       - name: Clean up Docker containers
         run: |
           docker stop my-python-app
