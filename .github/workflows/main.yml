@@ -40,7 +40,7 @@ jobs:
       - name: Export Newman report
         run: |
           ls
-          docker cp /home/runner/work/todoapp/todoapp/postman/newman/report.html reports:/reports
+          docker cp /home/runner/work/todoapp/todoapp/postman/newman/report.html reports:/app
           docker run reports:v1
           ls
           
